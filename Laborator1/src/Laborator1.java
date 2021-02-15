@@ -41,5 +41,19 @@ public class Laborator1 {
         n=n*6;
         System.out.print(n);
         System.out.print("\n");
+//        Compute the sum of the digits in the result obtained in the previous step. This is the new result. While the new result has more than one digit, continue to sum the digits of the result.
+        int sum_digits=0;
+        while(n!=0)
+        {
+            sum_digits+=n%10;
+            n/=10;
+            if(n==0&&sum_digits>=10)
+            {
+                n = sum_digits;
+                sum_digits=0;
+            }
+        }
+//        System.out.print(sum_digits);
+        System.out.print("\nWilly-nilly, this semester I will learn "+languages[sum_digits]);
     }
 }
