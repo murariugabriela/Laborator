@@ -20,11 +20,13 @@ public class Laborator1 {
             p=p*2;
             x=x/10;
         }
+        int cn=n+0b10101;
         n=n+nr;
-        System.out.print(n);
+        System.out.print(n+" "+cn+"\n");
         System.out.print("\n");
 //        add the hexadecimal number FF to the result;
         String y="FF";
+        cn=n+0xFF;
         nr=0;p=1;
         for(int i=y.length()-1;i>=0;i--)
         {
@@ -35,7 +37,7 @@ public class Laborator1 {
             p=p*16;
         }
         n=n+nr;
-        System.out.print(n);
+        System.out.print(n+" "+cn+"\n");
         System.out.print("\n");
 //        multiply the result by 6;
         n=n*6;
