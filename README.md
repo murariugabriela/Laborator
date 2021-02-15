@@ -1,1 +1,1 @@
-# Laborator1
+# Laborator
