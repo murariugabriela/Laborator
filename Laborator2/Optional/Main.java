@@ -2,7 +2,10 @@ package com.company;
 
 import java.util.Objects;
 import java.util.Scanner;
-
+/*
+@Author: Murariu Gabriela
+AnGrupa: 2B3
+*/
 abstract class Source {
     private int capacity;
     private String name;
