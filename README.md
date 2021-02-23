@@ -1,3 +1,4 @@
 # Laborator
-Student: Murariu Gabriela
-Content: Exercitii laborator Programare avansata 2021 (in folderul src al fiecarui folder Laborator#nr)
+Student: <b> <i> Murariu Gabriela </i> </i>
+<br />
+Content:  Exercitii laborator Programare avansata 2021 <u>(in folderul Laborator#nr)</u>
