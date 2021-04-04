@@ -21,6 +21,10 @@ public class MainFrame extends JFrame {
         return controlPanel;
     }
 
+    public DrawingPanel getCanvas() {
+        return canvas;
+    }
+
     private void init() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         canvas = new DrawingPanel(this);
