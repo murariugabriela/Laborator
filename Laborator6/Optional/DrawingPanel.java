@@ -4,17 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
 public class DrawingPanel extends JPanel {
     MainFrame frame;
-    private int x1, y1, x, y;
-    private boolean first = true;
     final static int W = 800, H = 600;
     BufferedImage image; //the offscreen image
     Graphics2D graphics; //the "tools" needed to draw in the image
+    private List<Shape> shapeList = new ArrayList<>();
 
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;
@@ -36,9 +39,27 @@ public class DrawingPanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 drawShape(e.getX(), e.getY());
-                repaint();
+                paintShape(shapeList);
             }
         });
+
+    }
+
+    public void paintShape(List<Shape> shapeList) {
+        for (Shape shape : shapeList) {
+            graphics.draw(shape);
+            graphics.fill(shape);
+            repaint();
+        }
+
+    }
+
+    public void setShapeList(List<Shape> shapeList) {
+        this.shapeList = shapeList;
+    }
+
+    public List<Shape> getShapeList() {
+        return shapeList;
     }
 
     private void drawShape(int x, int y) {
@@ -54,12 +75,15 @@ public class DrawingPanel extends JPanel {
             graphics.setColor(Color.BLACK);
         else
             graphics.setColor(Color.getHSBColor(hsbValues[0], hsbValues[1], hsbValues[2]));
-        if (Objects.equals(chosenFigure, "Square"))
-            graphics.fill(new RegularPolygon(x, y, radius, 4));
-        else if (Objects.equals(chosenFigure, "Circle")) {
-            graphics.drawOval(x, y, radius, radius);
-            graphics.fillOval(x, y, radius, radius);
+        if (Objects.equals(chosenFigure, "Square")) {
+            shapeList.add(new Rectangle2D.Float(x, y, x + radius, y + radius));
+//            graphics.fill(new RegularPolygon(x, y, radius, 4));
+        } else if (Objects.equals(chosenFigure, "Circle")) {
+            shapeList.add(new Ellipse2D.Float(x, y, radius, radius));
+//            graphics.drawOval(x, y, radius, radius);
+//            graphics.fillOval(x, y, radius, radius);
         } else {
+//            shapeList.add(new Line2D.Float(x,y,radius,radius));
             graphics.setStroke(new BasicStroke(4));
             graphics.drawLine(x, y, x + radius, y + radius);
             graphics.drawLine(x, y + radius, x + radius, y);
