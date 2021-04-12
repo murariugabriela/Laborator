@@ -34,11 +34,16 @@ public class Game {
 
     public void actualGame(Vector<Player> players) {
         setPlayersInTheGame(players.size());
+        Thread timeKeeper = new Thread();
         for (Player player : players) {
-            Thread t = new Thread() {
-                public void run() {
+            Thread t = new Thread(() -> {
+//                System.out.println("joaca");
+                synchronized (player) {
                     try {
                         while (true) {
+                            while (player.getPlayerNumber() != turn) {
+                                player.wait();
+                            }
                             int availableTokens = 0;
                             for (Integer integer : board.getAvailability()) {
                                 availableTokens = availableTokens + integer;
@@ -53,18 +58,18 @@ public class Game {
                                     printPlayers();
                                 break;
                             }
-                            Thread.sleep(10);
+                            turn = turn % playersInTheGame;
+                            player.notifyAll();
+//                            Thread.sleep(10);
                         }
                     } catch (InterruptedException e) {
-                        System.err.println(e.toString());
+                        e.printStackTrace();
                     }
-//                    this.notifyAll();
                 }
-            };
+
+            });
             t.start();
         }
-
-
     }
 
     @Override
@@ -77,9 +82,9 @@ public class Game {
         System.out.println(this.toString());
         System.out.println("and the winner is...");
         Player winner = new Player();
-        int maximumNOTokens=0;
+        int maximumNOTokens = 0;
         for (Player player : players) {
-            if(player.getPlayerScore()>maximumNOTokens){
+            if (player.getPlayerScore() > maximumNOTokens) {
                 maximumNOTokens = player.getPlayerScore();
                 winner = player;
             }
