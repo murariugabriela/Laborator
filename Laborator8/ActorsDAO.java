@@ -61,7 +61,7 @@ public class ActorsDAO implements DAO<Actor>{
 
             preparedStatement.setString(1, actor.getName());
             preparedStatement.setString(2, actor.getCharachterPlayed());
-            preparedStatement.setInt(3, actor.getMovie_id());
+            preparedStatement.setInt(3, actor.getMovieId());
 //            int affectedRows = preparedStatement.executeUpdate();
 //            System.out.println(affectedRows);
         } catch (SQLException throwables) {

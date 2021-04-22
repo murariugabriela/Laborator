@@ -5,15 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CSVParser {
-    private DBConnection dbConnection = DBConnection.getConnection();
     private MoviesDAO moviesDAO = new MoviesDAO();
-    private MovieGenresDAO movieGenresDAO = new MovieGenresDAO();
     private GenresDAO genresDAO = new GenresDAO();
-    private DirectorsDAO directorsDAO = new DirectorsDAO();
-    private ActorsDAO actorsDAO = new ActorsDAO();
 
     public void parseMovies() {
-
         CSVReader reader;
         try {
 //            imdb_title_id,title,original_title,year,date_published,genre,duration,country,language,director,writer,production_company,actors,description,avg_vote,votes,budget,usa_gross_income,worlwide_gross_income,metascore,reviews_from_users,reviews_from_critics
@@ -21,7 +16,6 @@ public class CSVParser {
             String[] lineInArray;
             int i = 1;
             int j = 1;
-            //primele 30
             while ((lineInArray = reader.readNext()) != null) {
                 if (i != 1) {
 //                    System.out.println(lineInArray[1] + " " + lineInArray[4] + " " + lineInArray[5] + " " +
@@ -47,7 +41,5 @@ public class CSVParser {
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
         }
-        System.out.println(moviesDAO.getAll());
-        System.out.println(genresDAO.getAll());
     }
 }

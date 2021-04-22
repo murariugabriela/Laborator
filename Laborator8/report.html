@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Laborator 8</title>
+    <style>
+        tr{
+            background-color: #fcdddb;
+        }
+        tr:nth-child(even) {
+            background-color: #fcc2c0;
+        }
+
+        .tables {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        table, td, th {
+            border: 1px solid #000000;
+            border-collapse: collapse;
+
+        }
+        td {
+            width: max-content;
+            padding-left: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="tables">
+    <table>
+        <tr>
+            <th>Movies</th>
+            <th>Title</th>
+            <th>Release date</th>
+            <th>Duration</th>
+            <th>IMDB score</th>
+        </tr>
+        <#list movies as movie>
+        <tr>
+            <td class="crt-nb">${movie.idMovie}</td>
+            <td>${movie.name}</td>
+            <td>${movie.releaseDate}</td>
+            <td>${movie.duration}</td>
+            <td>${movie.score}</td>
+        </tr>
+    </#list>
+    </table>
+    <table>
+        <tr>
+            <th>Genres</th>
+            <th>Title</th>
+        </tr>
+        <#list genres as genre>
+        <tr>
+            <td class="crt-nb">${genre.idGenre}</td>
+            <td>${genre.name}</td>
+        </tr>
+    </#list>
+    </table>
+</div>
+</body>
+</html>

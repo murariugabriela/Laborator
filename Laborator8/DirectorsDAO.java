@@ -57,7 +57,7 @@ public class DirectorsDAO implements DAO<Director>{
             preparedStatement = dbConnection.getConnectionDB().prepareStatement("Insert into movies (director_name,movie_id) values(?,?);");
 
             preparedStatement.setString(1, director.getName());
-            preparedStatement.setInt(2, director.getMovie_id());
+            preparedStatement.setInt(2, director.getMovieId());
 //            int affectedRows = preparedStatement.executeUpdate();
 //            System.out.println(affectedRows);
         } catch (SQLException throwables) {

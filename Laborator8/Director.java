@@ -1,12 +1,13 @@
-public class Director {
-    private int director_id;
-    private String name;
-    private int movie_id;
+public class Director{
+    protected String name;
+    protected Integer id;
+    protected Integer movieId;
 
-    public Director(int director_id, String name, int movie_id) {
-        this.director_id = director_id;
+    public Director(){}
+    public Director(int directorId, String name, int movieId) {
+        this.id = directorId;
         this.name = name;
-        this.movie_id = movie_id;
+        this.movieId = movieId;
     }
 
     @Override
@@ -20,24 +21,24 @@ public class Director {
         this.name = name;
     }
 
-    public void setDirector_id(int director_id) {
-        this.director_id = director_id;
+    public void setId(int directorId) {
+        this.id = directorId;
     }
 
-    public void setMovie_id(int movie_id) {
-        this.movie_id = movie_id;
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
-    public int getDirector_id() {
-        return director_id;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getMovie_id() {
-        return movie_id;
+    public int getMovieId() {
+        return movieId;
     }
 
 }

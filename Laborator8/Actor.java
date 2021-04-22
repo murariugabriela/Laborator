@@ -1,22 +1,18 @@
-public class Actor {
+public class Actor extends Director{
     //    actor_id   actor_name   movie_id
-    private int actor_id;
-    private String name;
-    private int movie_id;
     private String charachterPlayed;
 
-    public Actor(int actor_id, String name, int movie_id, String charachterPlayed) {
-        this.actor_id = actor_id;
+    public Actor(int id, String name, int movieId, String charachterPlayed) {
+        this.id = id;
         this.name = name;
-        this.movie_id = movie_id;
+        this.movieId = movieId;
         this.charachterPlayed = charachterPlayed;
     }
 
     @Override
     public String toString() {
-        return "ActorsDAO{" +
+        return "Actor{" +
                 "name='" + name + '\'' +
-                ", charachterPlayed='" + charachterPlayed + '\'' +
                 '}';
     }
 
@@ -24,28 +20,28 @@ public class Actor {
         this.name = name;
     }
 
-    public void setActor_id(int actor_id) {
-        this.actor_id = actor_id;
+    public void setId(int actorId) {
+        this.id = actorId;
     }
 
     public void setCharachterPlayed(String charachterPlayed) {
         this.charachterPlayed = charachterPlayed;
     }
 
-    public void setMovie_id(int movie_id) {
-        this.movie_id = movie_id;
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
-    public int getActor_id() {
-        return actor_id;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getMovie_id() {
-        return movie_id;
+    public int getMovieId() {
+        return movieId;
     }
 
     public String getCharachterPlayed() {
