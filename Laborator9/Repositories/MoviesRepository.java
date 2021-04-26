@@ -8,10 +8,10 @@ import java.util.List;
 
 public class MoviesRepository {
 
-    public Object findById(int movie_id) {
+    public Object findById(int movieId) {
         EntityManagement management = EntityManagement.getManagement();
         EntityManager entityManager = management.getEntityManager();
-        return entityManager.find(Movie.class, movie_id);
+        return entityManager.find(Movie.class, movieId);
     }
 
     public Object findByName(String name) {
