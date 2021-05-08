@@ -9,9 +9,9 @@ import java.util.List;
 public class UserRepository {
     EntityManagement management = EntityManagement.getManagement();
     EntityManager entityManager = management.getEntityManager();
-    public Object findById(int movie_id) {
+    public Object findById(int userId) {
 
-        return entityManager.find(User.class, movie_id);
+        return entityManager.find(User.class, userId);
     }
 
     public Object findByName(String name) {
