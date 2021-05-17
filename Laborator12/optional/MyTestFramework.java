@@ -17,6 +17,7 @@ import java.util.Objects;
 
 public class MyTestFramework {
     public static void main(String[] args) throws Exception {
+        int passed = 0, failed = 0;
         compulsory.MyClassLoader myLoader1 = new MyClassLoader();
         //Optional
         //parcurgere recursiva
@@ -50,9 +51,11 @@ public class MyTestFramework {
                         }
                         else
                             m.invoke(clasa.getConstructor().newInstance());
+                        passed++;
                     } catch (Throwable ex) {
                         System.out.printf("Test %s failed: %s %n",
                                 m, ex.getCause());
+                        failed++;
                     }
 
                 }
@@ -69,5 +72,6 @@ public class MyTestFramework {
                 }
             }
         }
+        System.out.printf("Passed: %d, Failed %d%n", passed, failed);
     }
 }
