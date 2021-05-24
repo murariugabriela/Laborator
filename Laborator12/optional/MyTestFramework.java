@@ -3,11 +3,16 @@ package optional;
 import compulsory.MyClassLoader;
 import org.junit.Test;
 
-import java.io.File;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import org.apache.commons.io.FilenameUtils;
+
+import javax.tools.JavaCompiler;
+import javax.tools.JavaFileObject;
+import javax.tools.StandardJavaFileManager;
+import javax.tools.ToolProvider;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -24,9 +29,21 @@ public class MyTestFramework {
         List<Object> allFiles = new ArrayList<>(Arrays.asList(Files.walk(Paths.get(args[1])).toArray()));
         System.out.println(allFiles + "\n");
         List<File> files = new ArrayList<>();
+        List<File> jarFiles = new ArrayList<>();
         for (Object file : allFiles) {
             if(Paths.get(file.toString()).toFile().isFile() && FilenameUtils.getExtension(Paths.get(file.toString()).toFile().getName()).equalsIgnoreCase("class"))
                 files.add(Paths.get(file.toString()).toFile());
+            if(Paths.get(file.toString()).toFile().isFile() && FilenameUtils.getExtension(Paths.get(file.toString()).toFile().getName()).equalsIgnoreCase("java"))
+                jarFiles.add(Paths.get(file.toString()).toFile());
+        }
+        for (File jarFile : jarFiles) {
+            BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\Gabi\\Desktop\\Laborator12\\src\\main\\java\\test"));
+            JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+            StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
+            Iterable<? extends JavaFileObject> compilationUnits1 =
+                    fileManager.getJavaFileObjectsFromFiles(Arrays.asList(jarFile));
+            compiler.getTask(out, fileManager, null, null, null, compilationUnits1).call();
+
         }
         for (File file : files) {
             Class clasa = myLoader1.loadClass(file.getParentFile().getName() + "." + file.getName().substring(0, file.getName().indexOf('.')));
